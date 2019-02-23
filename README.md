@@ -1,5 +1,5 @@
 # telco-customer-churn
-Analysis of IBM Watson Analytic customer telecommunications data to determine why customers are churning and develop a model to identify at-risk customers.
+Analysis of IBM Watson Analytic customer telecommunications data to determine why customers are churning and develop a model to identify adn predict at-risk customers.
 
 This Python 3.6 code was developed for an analytics course and it is shared here in the hope that it may assist others on their analytic and Python learning journey. I inserted comments to assist with understanding my thought process. Feel free to ask any questions or provide feedback – there’s always a better way!
 
