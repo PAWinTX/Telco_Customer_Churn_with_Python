@@ -1,7 +1,8 @@
 IBM stopped hosting the original raw data file referenced in the code at this URL:
 https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Telco-Customer-Churn.csv
 
-Others have posted copies of the file on various platforms but to ensure continued availability, it is copied here. The code is now updated to reflect this internal Github URL:
+Others have posted copies of the file on various platforms but to ensure continued availability, it is copied here.
+The code is now updated to reflect this internal Github URL:
 
 
 The user may also choose to modify the code to use a local downloaded copy.
