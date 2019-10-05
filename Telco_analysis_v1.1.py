@@ -1,9 +1,10 @@
 """
 Customer Churn Analysis of Watson Analytics telecommunications customer data
 Software: Python 3.6.4
-File: Telco_analysis_v1.0.py
+File: Telco_analysis_v1.1.py
 Developer: Paul A. Wilson
-Last revision: 03/31/2018
+Initial dev: 03/31/2018
+Last revision: 10/05/2019
 """
 
 #Begin Data import, initial exploration and cleaning #####################################
@@ -11,8 +12,8 @@ Last revision: 03/31/2018
 #Import libraries and modules
 import pandas as pd
 
-#Extract customer data (cd) from IBM Watson Analytics and import to Python as DataFrame cd
-cd = pd.read_csv('https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Telco-Customer-Churn.csv')
+#Extract customer data (cd) from GitHub (originally hosted by IBM for Watson Analytics)
+cd = pd.read_csv('https://raw.githubusercontent.com/PAWinTX/Telco_Customer_Churn_with_Python/master/local_WA_Fn-UseC_-Telco-Customer-Churn.csv')
 
 #Optional - Write a copy of cd to disc in CSV format
 cd.to_dense().to_csv('C:\Github\Telco\local_WA_Fn-UseC_-Telco-Customer-Churn.csv', index = False, sep=',', encoding='utf-8')
@@ -138,6 +139,7 @@ import seaborn as sns
 
 #Set plot and grid style.
 sns.set(style="whitegrid")
+#sns.set_style("whitegrid")
 
 #Distribution of variables using univariate stats
 
@@ -423,8 +425,8 @@ plt.show()
 #Dependent variable Churn
 #Churn
 fig, ax = plt.subplots()
-no = mpatches.Patch(color='C1', label='No Churn')
-yes = mpatches.Patch(color='C0', label='Churn')
+no = mpatches.Patch(color='C0', label='No Churn')
+yes = mpatches.Patch(color='C1', label='Churn')
 plt.legend(handles=[no,yes])
 print(cd.Churn.value_counts(dropna=False).plot(kind='barh', figsize=(11, 2), grid=True, zorder=2, title='Churn'))
 plt.xlabel('Customers')
@@ -434,6 +436,7 @@ for i in ax.patches:
     ax.text(i.get_width()+50, i.get_y()+.17, \
             str(round((i.get_width()), 2)), fontsize=11)
 plt.margins(0.09)
+ax.invert_yaxis()
 plt.show()
 
 #Bivariate analysis
@@ -463,12 +466,10 @@ plt.show()
 
 #Churn by demographic variables
 #By Gender
-sns.set(style="whitegrid")
 fig, ax = plt.subplots(figsize=(10.5,3))
 male = mpatches.Patch(color='C0', label='Male')
 female = mpatches.Patch(color='C1', label='Female')
 plt.legend(handles=[female,male])
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='Gender', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0-No 1-Yes')
@@ -486,7 +487,6 @@ fig, ax = plt.subplots(figsize=(10.5,3))
 no = mpatches.Patch(color='C0', label='Not a Senior')
 yes = mpatches.Patch(color='C1', label='Senior')
 plt.legend(handles=[no,yes])
-#sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='SeniorCitizen', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0-No 1-Yes')
@@ -504,7 +504,6 @@ fig, ax = plt.subplots(figsize=(10.5,3))
 no = mpatches.Patch(color='C0', label='No Partner')
 yes = mpatches.Patch(color='C1', label='Partner')
 plt.legend(handles=[no,yes])
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='Partner', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0-No 1-Yes')
@@ -522,7 +521,6 @@ fig, ax = plt.subplots(figsize=(10.5,3))
 no = mpatches.Patch(color='C0', label='No Dependents')
 yes = mpatches.Patch(color='C1', label='Dependents')
 plt.legend(handles=[no,yes])
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='Dependents', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0-No 1-Yes')
@@ -540,7 +538,6 @@ fig, ax = plt.subplots(figsize=(10.5,3))
 no = mpatches.Patch(color='C0', label='No Phone Service')
 yes = mpatches.Patch(color='C1', label='Phone Service')
 plt.legend(handles=[no,yes])
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='PhoneService', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0-No 1-Yes')
@@ -555,7 +552,6 @@ plt.show()
 
 #By MultipleLines
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='MultipleLines', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -570,7 +566,6 @@ plt.show()
 
 #By InternetService
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='InternetService', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -585,7 +580,6 @@ plt.show()
 
 #By OnlineSecurity
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='OnlineSecurity', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -600,7 +594,6 @@ plt.show()
 
 #By TechSupport
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='TechSupport', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -615,7 +608,6 @@ plt.show()
 
 #By OnlineBackup
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='OnlineBackup', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -630,7 +622,6 @@ plt.show()
 
 #By DeviceProtection
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='DeviceProtection', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -645,7 +636,6 @@ plt.show()
 
 #By StreamingTV
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='StreamingTV', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -660,7 +650,6 @@ plt.show()
 
 #By StreamingMovies
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='StreamingMovies', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -675,7 +664,6 @@ plt.show()
 
 #By Contract
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='Contract', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -693,7 +681,6 @@ fig, ax = plt.subplots(figsize=(10.5,3))
 no = mpatches.Patch(color='C0', label='No Paperless Billing')
 yes = mpatches.Patch(color='C1', label='Paperless Billing')
 plt.legend(handles=[no,yes])
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='PaperlessBilling', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -708,7 +695,6 @@ plt.show()
 
 #By PaymentMethod
 fig, ax = plt.subplots(figsize=(10.5,3))
-sns.set_style("whitegrid") 
 print(sns.countplot(y='Churn', hue='PaymentMethod', data=cd, ax=ax))
 plt.xlabel('Customers')
 plt.ylabel('Churn: 0=No 1=Yes')
@@ -732,7 +718,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import Lasso
-from sklearn.cross_validation import train_test_split
+#cross_validation deprecated in version 0.18 in favor of the model_selection module
+#from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import model_selection
 from sklearn.model_selection import cross_val_score
