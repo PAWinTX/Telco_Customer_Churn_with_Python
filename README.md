@@ -1,7 +1,16 @@
 # Telco_Customer_Churn_with_Python
 Analysis of IBM Watson Analytic customer telecommunications data to determine why customers are churning and develop a model to identify and predict at-risk customers.
 
-This Python 3.6 code was developed for an analytics course and it is shared here in the hope that it may assist others on their analytic and Python learning journey. I inserted comments to assist with understanding my thought process. Feel free to ask any questions or provide feedback.
+This new Python 3.13 version is is a fully modular, production-ready rewrite of the original Customer Churn.txt script.
+It keeps all analytical intent (data cleaning, exploration, churn prediction) but:
+- Converts it into maintainable, function-based architecture
+- Adopts current library APIs and idiomatic pandas usage
+- Introduces reproducible modeling with scikit-learn
+- Adds robust logging, cross-validation, and safe exports
+- Eliminates deprecated or redundant constructs
+Together these changes make the code shorter, faster, easier to maintain, and fully compatible with modern Python 3.13 environments.
+
+The original Python 3.6 code was developed for an analytics course and it is shared here in the hope that it may assist others on their analytic and Python learning journey. I inserted comments to assist with understanding my thought process. Feel free to ask any questions or provide feedback.
 
 The course featured these very broad objectives:
 1) Successfully scrape the customer data from the internet.
